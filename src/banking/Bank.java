@@ -11,104 +11,99 @@ public class Bank {
 
     public static void main(String[] args) {
 
-        //creates new instance of Bank class
+        //Cria uma nova instância da classe banco
         Bank bank = new Bank();
 
-        //calls the run method in the bank class
+        //Chama o método run na classe banco
         bank.run();
 
     }
-
     /**
-     * Runs the program by initializing and managing, bank accounts and customers.
+     * Executa o programa inicializando e gerenciando contas bancárias
+     * e clientes.
      */
     public void run() {
-        System.out.println("Welcome to the Bank!  What is your name? ");
+        System.out.println("Bem vindo ao Banco! Qual o seu nome? ");
 
-        //create scanner to get user input
+        //implementa a entrada de dados atraves do teclado
         Scanner scanner = new Scanner(System.in);
 
-        //get the next token (word), which is the customer's name
-        String name = scanner.next();
+        //obtém a próxima palavra que no caso é o nome do cliente
+        String nome = scanner.next();
 
-        System.out.println("Hello " + name + "! We are creating checking and savings accounts for you.");
+        System.out.println("Olá " + nome + " Estamos criando conta corrente e poupança para você.");
 
-        //create customer with given name
-        Customer customer = new Customer(name);
+        //Cria cliente com nome
+        Cliente cliente = new Cliente (nome);
 
-        //get address
-        System.out.println("What is your address?");
+        //obtem endereço do cliente
+        System.out.println("Qual o seu endereço?");
 
-        //get the next token (word), which is the customer's address
-        String address = scanner.next();
+        //obtém a próxima palavra que é o endereço do cliente
+        String endereco = scanner.next();
 
-        //set the customer's address
-        customer.setAddress(address);
+        //Define o endereço do cliente
+        cliente.setEndereco(endereco);
 
-        //create a checking account for customer
-        BankAccount checkingAccount = new BankAccount("checking", customer);
+        //Cria uma conta corrente para o cliente
+        BankAccount checkingAccount = new BankAccount("conta corrente", cliente);
 
-        //create a savings account for customer
-        BankAccount savingsAccount = new BankAccount("savings", customer);
+        //Cria uma conta poupança para o cliente
+        BankAccount savingsAccount = new BankAccount("poupança", cliente);
 
-        //gets and prints the customer info associated with the checking account
+        //Obtém e imprime as informaçÕes do cliente associadas a conta corrente
         System.out.println();
-        System.out.println("Customer info: ");
+        System.out.println("Informações do Cliente: ");
         System.out.println(checkingAccount.getCustomerInfo());
 
-        //get and print account info for checking account
-        System.out.println("Checking account: ");
-        System.out.println(checkingAccount.getAccountInfo());
-        System.out.println("Savings account: ");
-        System.out.println(savingsAccount.getAccountInfo());
+        //obtém e imrpime informações para checagem da conta
+        System.out.println("Saldo "+ checkingAccount.getAccountInfo());
+        System.out.println("Saldo " + savingsAccount.getAccountInfo());
 
-        //deposits
+        //Depósitos
 
-        //into checking
-        System.out.println(); //blank line
-        System.out.println("Amount (decimal) to deposit into your checking account?");
-        double amount = scanner.nextDouble(); //get next token (double)
-        checkingAccount.deposit(amount); //deposit into checking account
+        //verificação dos depositos
+        System.out.println("Valor de depósito na conta corrente?"); //linha em branco
+        double amount = scanner.nextDouble(); //obter próximo dado (double)
+        checkingAccount.deposit(amount); //deposito em conta corrente
 
-        //into savings
-        System.out.println(); //blank line
-        System.out.println("Amount (decimal) to deposit into your savings account?");
-        amount = scanner.nextDouble(); //get next token (double)
-        savingsAccount.deposit(amount); //deposit into savings account
+        //Conta Poupança
+        System.out.println(); //linha em branco
+        System.out.println("Qual o valor para deposíto em sua conta poupança?");
+        amount = scanner.nextDouble(); //obter próximo dado (double)
+        savingsAccount.deposit(amount); //depositar em conta corrente
 
-        //print new balances
+        //imprime os novos saldos
         System.out.println(checkingAccount.getAccountInfo());
         System.out.println(savingsAccount.getAccountInfo());
 
-        //withdrawals
+        //Saques
 
-        //from checking
-        System.out.println(); //blank line
-        System.out.println("Amount (decimal) to withdraw from your checking account?");
-        amount = scanner.nextDouble(); //get next token (double)
-
+        //conta corrente
+        System.out.println(); //linha em branco
+        System.out.println("Qual valor gostaria de sacar de sua conta corrente?");
+        amount = scanner.nextDouble(); //obter próximo dado (double)
+        //bloco de try catch para tratar o erro no caso da conta não ter saldo suficiente
         try {
-            checkingAccount.withdraw(amount); //withdraw from checking
+            checkingAccount.withdraw(amount);
         } catch (Exception e) {
-            //e.printStackTrace();
-            //prints custom error message from withdraw method
+            //imprime mensagem de erro personalizada do método de retirada
             System.out.println(e.getMessage());
         }
 
-        //from savings
-        System.out.println(); //blank line
-        System.out.println("Amount (decimal) to withdraw from your savings account?");
-        amount = scanner.nextDouble(); //get next token (double)
+        //da poupança
+        System.out.println(); //linha em branco
+        System.out.println("Qual valor gostaria de sacar de sua conta poupança?");
+        amount = scanner.nextDouble(); //obter o próximo dado (double)
 
         try {
-            savingsAccount.withdraw(amount); //withdraw from savings
+            savingsAccount.withdraw(amount);//retirar da poupança
         } catch (Exception e) {
-            //e.printStackTrace();
-            //prints custom error message from withdraw method
+            //imprime mensagem de erro personalizada do método de retirada
             System.out.println(e.getMessage());
         }
 
-        //print new balances
+        //imprime novos saldos
         System.out.println(checkingAccount.getAccountInfo());
         System.out.println(savingsAccount.getAccountInfo());
 

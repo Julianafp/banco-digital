@@ -1,47 +1,47 @@
 package banking;
 
 /**
- * Represents a checking/savings bank account for a customer.
- * @author lbrandon
+ *Represneta uma conta corrente e poupança para um cliente.
+ * @author julianapinto
  *
  */
 public class BankAccount {
 
-    //instance vars
+    //instancia variáveis
 
     /**
-     * Type of account (checking/savings)
+     * Tipo de conta (corrente/poupança)
      */
     String accountType;
 
     /**
-     * Balance for bank account.
+     * Saldo para conta bancária.
      */
     double balance;
 
     /**
-     * Customer for this account.
+     * Cliente para essa conta.
      */
-    Customer customer;
+    Cliente cliente;
 
-    //constructor
+    //construtor
 
     /**
-     * Creates a bank account of given type for given customer.
-     * @param accountType for bank account
-     * @param customer for bank account
+     * Cria uma conta bancária de determinado tipo para determinado cliente.
+     * @param accountType para conta bancária
+     * @param cliente para conta bancária
      */
-    public BankAccount(String accountType, Customer customer) {
+    public BankAccount(String accountType, Cliente cliente) {
         this.accountType = accountType;
-        this.customer = customer;
+        this.cliente = cliente;
 
     }
 
 
-    //methods
+    //Metodos
 
     /**
-     * Deposits the given amount.
+     * Deposita a quantia indicada
      * @param amount to add to balance
      */
     public void deposit(double amount) {
@@ -49,31 +49,31 @@ public class BankAccount {
     }
 
     /**
-     * Withdraws the given amount from balance.
-     * @param amount to withdraw
-     * @throws Exception if given amount is larger than available balance
+     * Retira o valor dado do saldo.
+     * @param amount para retirada
+     * @throws Exception se o valor fornecido for maior que o saldo disponível
      */
     public void withdraw(double amount) throws Exception {
         if (amount > this.balance) {
-            throw new Exception("Amount is greater than available balance.");
+            throw new Exception("O valor é maior que o saldo disponível.");
         }
         this.balance -= amount;
     }
 
     /**
-     * Returns account type and balance for this bank account.
-     * @return string with all the info
+     * Retorna tipo de conta e saldo
+     * @return string com todas as informações
      */
     public String getAccountInfo() {
         return this.accountType + ": " + this.balance;
     }
 
     /**
-     * Returns the customer name and address for this bank account.
-     * @return string with all the info
+     * Retorna o nome e o endereço do cliente para esta conta bancária
+     * @return string com todas as informações
      */
     public String getCustomerInfo() {
-        return this.customer.getName() + " from " + this.customer.getAddress();
+        return this.cliente.getName() + " de " + this.cliente.getEndereco();
     }
 
 
